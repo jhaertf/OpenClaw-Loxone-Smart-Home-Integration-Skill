@@ -1,0 +1,23 @@
+# secrets
+credentials/
+.env
+.env.*
+*.secret
+*.key
+*.pem
+
+# runtime local files
+skills/loxone/config.json
+skills/loxone/actions.json
+skills/loxone/pv-day-overrides.json
+skills/loxone/loxone-controls-inventory.csv
+memory/pv-anomaly-alert-state.json
+
+# python
+__pycache__/
+*.pyc
+
+# logs/editor
+*.log
+.DS_Store
+.vscode/

@@ -1,0 +1,4 @@
+name,type,uuid,notes
+PV_Total,InfoOnlyAnalog,REPLACE_WITH_UUID_PV_TOTAL,main pv feed
+SleepSwitch,Switch,REPLACE_WITH_UUID_SLEEP_SWITCH,sleep mode control
+Presence_LivingRoom,Sensor,REPLACE_WITH_UUID_PRESENCE_SENSOR,presence for TTS
