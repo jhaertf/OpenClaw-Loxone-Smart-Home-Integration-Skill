@@ -1,0 +1,36 @@
+{
+  "site": {
+    "latitude": 49.000,
+    "longitude": 10.000,
+    "timezone": "Europe/Berlin"
+  },
+  "segments": {
+    "Feld A": {
+      "uuid": "REPLACE_SEGMENT_UUID_A",
+      "parts": [
+        { "tilt_deg": 30, "azimuth_from_south_deg": 0, "weight": 1.0 }
+      ]
+    },
+    "Feld B": {
+      "uuid": "REPLACE_SEGMENT_UUID_B",
+      "parts": [
+        { "tilt_deg": 30, "azimuth_from_south_deg": -90, "weight": 1.0 }
+      ]
+    }
+  },
+  "ids": {
+    "total_power": "REPLACE_TOTAL_POWER_UUID",
+    "soc": "REPLACE_SOC_UUID",
+    "grid": "REPLACE_GRID_UUID",
+    "sunrise": "REPLACE_SUNRISE_UUID",
+    "sunset": "REPLACE_SUNSET_UUID"
+  },
+  "weather_ids": {
+    "temp_north_c": "REPLACE_TEMP_NORTH_UUID",
+    "temp_station_c": "REPLACE_TEMP_STATION_UUID",
+    "brightness_lux": "REPLACE_BRIGHTNESS_UUID",
+    "wind_kmh": "REPLACE_WIND_UUID",
+    "rain_active": "REPLACE_RAIN_UUID/active",
+    "sunshine_active": "REPLACE_SUNSHINE_UUID/active"
+  }
+}
