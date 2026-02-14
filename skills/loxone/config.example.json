@@ -1,7 +1,7 @@
 {
-  "hostFile": "${OPENCLAW_CREDENTIALS_DIR}/loxone-host",
-  "user": "${LOXONE_API_USER}",
-  "passwordFile": "${OPENCLAW_CREDENTIALS_DIR}/loxone-password",
+  "hostFile": "/absolute/path/to/credentials/loxone-host",
+  "userFile": "/absolute/path/to/credentials/loxone-user",
+  "passwordFile": "/absolute/path/to/credentials/loxone-password",
   "insecure_tls": true,
   "scenes": {
     "Kinderzimmer öffnen": "REPLACE_WITH_CONTROL_OR_VINPUT_NAME"

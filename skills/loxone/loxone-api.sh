@@ -42,6 +42,7 @@ case "$cmd" in
     require_file "$ACTIONS_PATH"
 
     host_file=$(jq -r '.hostFile // empty' "$CONFIG_PATH")
+    user_file=$(jq -r '.userFile // empty' "$CONFIG_PATH")
     user=$(jq -r '.user // empty' "$CONFIG_PATH")
     pass_file=$(jq -r '.passwordFile // empty' "$CONFIG_PATH")
 
@@ -49,12 +50,17 @@ case "$cmd" in
     command=$(jq -r --arg id "$action_id" '.actions[$id].command // empty' "$ACTIONS_PATH")
     post_script=$(jq -r --arg id "$action_id" '.actions[$id].post_action_script // empty' "$ACTIONS_PATH")
 
-    [[ -n "$host_file" && -n "$user" && -n "$pass_file" && -n "$control" && -n "$command" ]] || {
+    [[ -n "$host_file" && -n "$pass_file" && -n "$control" && -n "$command" ]] || {
       echo "Invalid mapping/config for action: $action_id"; exit 1;
     }
 
     host=$(read_secret_file "$host_file")
     pass=$(read_secret_file "$pass_file")
+    if [[ -n "$user_file" ]]; then
+      user=$(read_secret_file "$user_file")
+    fi
+
+    [[ -n "$user" ]] || { echo "Missing user/userFile in config"; exit 1; }
 
     call_loxone "$host" "$user" "$pass" "$control" "$command" >/dev/null
     echo "OK: action '$action_id' executed"

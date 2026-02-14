@@ -10,6 +10,22 @@ Diese Doku beschreibt ein praxiserprobtes Skill-Setup für:
 
 ---
 
+## What’s New (Community PV Update)
+
+- PV-Template-Module ergänzt:
+  - `skills/loxone/pv-mapping.example.json`
+  - `skills/loxone/pv-history-db.py`
+  - `skills/loxone/pv-compact-overview.py`
+  - `skills/loxone/pv-shadow-v3_1.py`
+  - `skills/loxone/pv-shadow-eval-report.py`
+- Beispielausgaben dokumentiert: `docs/pv-script-output-examples.md`
+- Step-by-step Setup ergänzt: `docs/COMMUNITY-SETUP.md`
+- Bootstrap-Skript ergänzt: `scripts/bootstrap-community-skill.sh`
+- Konfig auf `userFile` vorbereitet (kein hardcoded API-User)
+- `.gitignore` für Community-Betrieb geschärft (inkl. `skills/loxone/versions/`)
+
+---
+
 ## Inhaltsverzeichnis
 
 1. [Features](#features)
@@ -41,6 +57,11 @@ Diese Doku beschreibt ein praxiserprobtes Skill-Setup für:
 - **Zeitfensterlogik** (z. B. nur morgens zwischen 06:00–11:00)
 - **Cron-fähig** für wiederkehrende Aufgaben
 - **PV-/Energie-Statusberichte** inkl. Tagesdeltas aus `/stats`
+- **Community-PV-Stack (Template):**
+  - Historisierung (`pv-history-db.py`)
+  - Kompaktreport (`pv-compact-overview.py`)
+  - Shadow-Modell V3.1 Scaffold (`pv-shadow-v3_1.py`)
+  - Accuracy-Vergleich (`pv-shadow-eval-report.py`)
 
 ---
 
@@ -122,7 +143,7 @@ skills/loxone/
 ```json
 {
   "hostFile": "/path/to/credentials/loxone-host",
-  "user": "<API_USER>",
+  "userFile": "/path/to/credentials/loxone-user",
   "passwordFile": "/path/to/credentials/loxone-password",
   "insecure_tls": true,
   "scenes": {
@@ -131,11 +152,12 @@ skills/loxone/
 }
 ```
 
-> Durch das Password-File werden keinerlei Passwörter in den Scripten abgelegt.
+> Host, User und Passwort liegen als Dateien außerhalb des Repos (keine Secrets in Skripten).
 
 ### Credential-Dateien (Beispiel)
 
 - `loxone-host`: `https://<loxone-host-or-ip>`
+- `loxone-user`: `<api-user>`
 - `loxone-password`: `<secret>`
 
 > Empfehlung: Datei-Rechte restriktiv setzen (`chmod 600`).
@@ -226,6 +248,9 @@ Berichtsblöcke:
 - Tagesertrag
 - Akku (SOC, Laden/Entladen)
 - Netzbezug/Einspeisung
+
+Anonymisierte Beispielausgaben für die Community:
+- `docs/pv-script-output-examples.md`
 
 ---
 

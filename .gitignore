@@ -11,7 +11,16 @@ skills/loxone/config.json
 skills/loxone/actions.json
 skills/loxone/pv-day-overrides.json
 skills/loxone/loxone-controls-inventory.csv
-memory/pv-anomaly-alert-state.json
+skills/loxone/versions/
+skills/loxone/*.sqlite
+skills/loxone/*.db
+memory/
+!memory/.gitkeep
+
+# state/runtime artifacts
+skills/loxone/*-state.json
+skills/loxone/local-*.json
+local-skill-register.json
 
 # python
 __pycache__/
