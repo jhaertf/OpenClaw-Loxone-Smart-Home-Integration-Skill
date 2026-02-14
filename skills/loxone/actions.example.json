@@ -1,12 +1,12 @@
 {
   "actions": {
-    "sleep_mode_on": {
-      "title": "Schlafmodus aktivieren",
+    "scene_on": {
+      "title": "Beispielszene aktivieren",
       "control": "REPLACE_WITH_CONTROL_NAME",
       "command": "On"
     },
-    "sleep_mode_off": {
-      "title": "Schlafmodus deaktivieren",
+    "scene_off": {
+      "title": "Beispielszene deaktivieren",
       "control": "REPLACE_WITH_CONTROL_NAME",
       "command": "Off",
       "post_action_script": "${OPENCLAW_WORKSPACE}/skills/loxone/wake-weather-report.sh"
@@ -17,8 +17,8 @@
     }
   },
   "aliases": {
-    "schlafmodus an": "sleep_mode_on",
-    "schlafmodus aus": "sleep_mode_off",
+    "szene an": "scene_on",
+    "szene aus": "scene_off",
     "pv report": "pv_status"
   }
 }

@@ -4,6 +4,6 @@
   "passwordFile": "/absolute/path/to/credentials/loxone-password",
   "insecure_tls": true,
   "scenes": {
-    "Kinderzimmer öffnen": "REPLACE_WITH_CONTROL_OR_VINPUT_NAME"
+    "Beispielszene": "REPLACE_WITH_CONTROL_OR_VINPUT_NAME"
   }
 }

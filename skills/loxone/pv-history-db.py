@@ -1,13 +1,15 @@
 #!/usr/bin/env python3
-import argparse, base64, datetime as dt, json, re, sqlite3, ssl, urllib.request
+import argparse, base64, datetime as dt, json, os, re, sqlite3, ssl, urllib.request
 from pathlib import Path
 
 BASE = Path(__file__).resolve().parent
 MAPPING = BASE / 'pv-mapping.json'
-DB_PATH = Path('/home/openclaw/.openclaw/workspace/memory/pv-history.sqlite')
-HOST = Path('/home/openclaw/.openclaw/credentials/loxone-host').read_text().strip().replace('https://','').replace('http://','')
-USER = Path('/home/openclaw/.openclaw/credentials/loxone-user').read_text().strip()
-PASS = Path('/home/openclaw/.openclaw/credentials/loxone-password').read_text().strip()
+WORKSPACE = Path(os.getenv('OPENCLAW_WORKSPACE', BASE.parent.parent))
+DB_PATH = WORKSPACE / 'memory/pv-history.sqlite'
+CRED_DIR = Path(os.getenv('OPENCLAW_CREDENTIALS_DIR', '/home/openclaw/.openclaw/credentials'))
+HOST = (CRED_DIR / 'loxone-host').read_text().strip().replace('https://','').replace('http://','')
+USER = (CRED_DIR / 'loxone-user').read_text().strip()
+PASS = (CRED_DIR / 'loxone-password').read_text().strip()
 
 ctx = ssl._create_unverified_context()
 auth = 'Basic ' + base64.b64encode(f'{USER}:{PASS}'.encode()).decode()

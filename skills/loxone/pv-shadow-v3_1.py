@@ -9,12 +9,13 @@ Features:
 
 Fill `pv-mapping.json` and adapt formulas for your installation.
 """
-import datetime as dt, json, sqlite3
+import datetime as dt, json, os, sqlite3
 from pathlib import Path
 
 BASE = Path(__file__).resolve().parent
 MAPPING = BASE / 'pv-mapping.json'
-DB_PATH = Path('/home/openclaw/.openclaw/workspace/memory/pv-history.sqlite')
+WORKSPACE = Path(os.getenv('OPENCLAW_WORKSPACE', BASE.parent.parent))
+DB_PATH = WORKSPACE / 'memory/pv-history.sqlite'
 
 
 def load_mapping():

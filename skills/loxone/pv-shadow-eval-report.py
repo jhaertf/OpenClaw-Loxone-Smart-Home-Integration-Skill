@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
-import datetime as dt, sqlite3
+import datetime as dt, os, sqlite3
 from pathlib import Path
 
-DB_PATH = Path('/home/openclaw/.openclaw/workspace/memory/pv-history.sqlite')
+BASE = Path(__file__).resolve().parent
+WORKSPACE = Path(os.getenv('OPENCLAW_WORKSPACE', BASE.parent.parent))
+DB_PATH = WORKSPACE / 'memory/pv-history.sqlite'
 
 
 def mae(pairs):

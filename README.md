@@ -3,7 +3,7 @@
 > Community-Dokumentation für die Nutzung eines Loxone-Miniserver-Setups mit OpenClaw.
 
 Diese Doku beschreibt ein praxiserprobtes Skill-Setup für:
-- Haussteuerung per Chat (z. B. Schlafmodus, Abwesend, Fenster/Rollos)
+- Haussteuerung per Chat (z. B. Szenenmodus, Abwesend, Szenen/Aktoren)
 - Morning-Briefing (Wetter + optionale TTS-Ausgabe in Audio-Zonen)
 - zeitgesteuerte Automationen (Cron)
 - PV-/Energie-Statusreports und optionale Anomalieerkennung
@@ -50,7 +50,7 @@ Diese Doku beschreibt ein praxiserprobtes Skill-Setup für:
 
 - **Textbasierte Haussteuerung** über natürliche Sprache
 - **Action-Mapping** mit stabilen IDs/Control-Namen
-- **Schlafmodus-Flow** (an/aus) mit optionalem Folgeprozess
+- **Szenenmodus-Flow** (an/aus) mit optionalem Folgeprozess
 - **Morning-Briefing** mit Wetter in komprimierter oder ausführlicher Form
 - **Optionales Audio-Briefing via Loxone TTS**
 - **Präsenzgesteuerte Ausspielung** (z. B. nur bei Bewegung im Raum)
@@ -147,7 +147,7 @@ skills/loxone/
   "passwordFile": "/path/to/credentials/loxone-password",
   "insecure_tls": true,
   "scenes": {
-    "Kinderzimmer öffnen": "VirtualInput_KinderzimmerOpen"
+    "Beispielszene": "VirtualInput_ExampleScene"
   }
 }
 ```
@@ -178,21 +178,21 @@ skills/loxone/
 ```json
 {
   "actions": {
-    "sleep_mode_on": {
-      "title": "Schlafmodus aktivieren",
+    "scene_on": {
+      "title": "Szenenmodus aktivieren",
       "control": "SleepSwitch",
       "command": "On"
     },
-    "sleep_mode_off": {
-      "title": "Schlafmodus deaktivieren",
+    "scene_off": {
+      "title": "Szenenmodus deaktivieren",
       "control": "SleepSwitch",
       "command": "Off",
       "post_action_script": "/.../wake-weather-report.sh"
     }
   },
   "aliases": {
-    "schlafmodus an": "sleep_mode_on",
-    "schlafmodus aus": "sleep_mode_off"
+    "Szenenmodus an": "scene_on",
+    "Szenenmodus aus": "scene_off"
   }
 }
 ```
@@ -261,10 +261,10 @@ Anonymisierte Beispielausgaben für die Community:
 - **Ursache:** Text zu lang
 - **Lösung:** Hard-Limit (z. B. 300 Zeichen inkl. Leerzeichen), notfalls mit `…` kürzen
 
-### 2) „Schlafmodus aus“ ohne Briefing
+### 2) „Szenenmodus aus“ ohne Briefing
 **Symptom:** Schalter wird deaktiviert, aber keine Ansage/kein Report.
 - **Ursache:** `post_action_script` fehlt auf direkter Aktion oder Alias zeigt auf andere Action
-- **Lösung:** Briefing auf allen relevanten Actions anhängen (`sleep_mode_off`, `wake_house`)
+- **Lösung:** Briefing auf allen relevanten Actions anhängen (`scene_off`, `scene_wakeup`)
 
 ### 3) Trigger ausgeführt, aber Gerät reagiert nicht
 **Symptom:** Cron läuft „ok“, physisch passiert nichts.
@@ -361,14 +361,14 @@ bash skills/loxone/loxone-api.sh run_action <action_id>
 
 ## Beispiel-Workflows
 
-### A) Schlafmodus deaktivieren + Morning-Briefing
-1. User sagt „Schlafmodus aus“
-2. Alias → Action `sleep_mode_off`
+### A) Szenenmodus deaktivieren + Morning-Briefing
+1. User sagt „Szenenmodus aus“
+2. Alias → Action `scene_off`
 3. Action schaltet Sleep-Switch auf `Off`
 4. `post_action_script` erzeugt Wetterbericht
 5. Optional TTS wird zeit-/präsenzgesteuert abgespielt
 
-### B) Kinderzimmer öffnen per virtuellem Eingang
+### B) Beispielszene per virtuellem Eingang
 1. Cron zur definierten Uhrzeit
 2. Script prüft Tag/Feiertag
 3. Script triggert Virtual Input (Pulse)
